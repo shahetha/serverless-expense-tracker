@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-sans: 'Manrope', system-ui, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --teal-50:  #e8faf7;
+  --teal-100: #c0f0e8;
+  --teal-400: #1ab9a0;
+  --teal-500: #0fa88e;
+  --teal-600: #0d8c76;
+  --blue-400: #2196c9;
+  --blue-500: #1a7db0;
+
+  --surface-0: rgba(255,255,255,0.95);
+  --surface-1: rgba(255,255,255,0.78);
+  --surface-2: rgba(255,255,255,0.55);
+  --border:    rgba(26,185,160,0.13);
+  --border-md: rgba(26,185,160,0.22);
+  --shadow-sm: 0 2px 12px rgba(13,47,58,0.06);
+  --shadow-md: 0 6px 28px rgba(13,47,58,0.10);
+  --shadow-lg: 0 16px 48px rgba(13,47,58,0.14);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+
+  --text-primary:   #0a2030;
+  --text-secondary: #4a7080;
+  --text-muted:     #8aabb8;
+  --danger: #e05454;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; font-family: var(--font-sans); }
+body { background: linear-gradient(145deg,#dff6f2 0%,#e8faf7 20%,#eefcff 50%,#f4f8fd 100%); }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(26,185,160,0.22); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(26,185,160,0.4); }
+
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type=month]::-webkit-calendar-picker-indicator { opacity: 0.5; cursor: pointer; }
+
+@keyframes fadeUp   { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+@keyframes scaleIn  { from{opacity:0;transform:scale(0.96)} to{opacity:1;transform:scale(1)} }
+@keyframes spin     { to{transform:rotate(360deg)} }
+@keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:0.45} }
+@keyframes countUp  { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+@keyframes shimmer  { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+@keyframes slideIn  { from{opacity:0;transform:translateX(18px)} to{opacity:1;transform:translateX(0)} }
+@keyframes toastIn  { from{opacity:0;transform:translateY(12px) scale(0.96)} to{opacity:1;transform:translateY(0) scale(1)} }
+
+.glass {
+  background: var(--surface-1);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255,255,255,0.82);
+}
+.card {
+  background: var(--surface-1);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s cubic-bezier(.22,.68,0,1.2), box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(26,185,160,0.07) 25%, rgba(26,185,160,0.13) 50%, rgba(26,185,160,0.07) 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius-sm); border: none;
+  background: linear-gradient(90deg, var(--teal-400), var(--blue-400));
+  color: #fff; font-family: var(--font-sans); font-size: 13.5px; font-weight: 700;
+  cursor: pointer; box-shadow: 0 3px 14px rgba(26,185,160,0.28);
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+.btn-primary:hover  { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,185,160,0.36); filter: brightness(1.05); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-md); background: transparent;
+  color: var(--text-secondary); font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.btn-ghost:hover { background: rgba(26,185,160,0.07); border-color: rgba(26,185,160,0.35); color: var(--teal-500); }
