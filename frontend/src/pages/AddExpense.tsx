@@ -7,6 +7,7 @@ interface Props {
   expense?: Expense | null;
   onSaved: () => void;
   onCancel: () => void;
+  onToast?: (message: string, type?: "success" | "error" | "info") => void;
 }
 
 const today = () => new Date().toISOString().split("T")[0];
