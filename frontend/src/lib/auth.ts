@@ -12,7 +12,7 @@ export function usingDevAuth(): boolean { return !POOL_ID || !CLIENT_ID; }
 
 export function configureAuth(): void {
   if (usingDevAuth()) { console.info("[auth] DEV mode — no Cognito env vars"); return; }
-  Amplify.configure({ Auth: { Cognito: { userPoolId: POOL_ID!, userPoolClientId: CLIENT_ID!, region: REGION } } });
+  Amplify.configure({ Auth: { Cognito: { userPoolId: POOL_ID!, userPoolClientId: CLIENT_ID! } } });
 }
 
 export function getDevUserSub(): string | null { return localStorage.getItem(DEV_USER_KEY); }
