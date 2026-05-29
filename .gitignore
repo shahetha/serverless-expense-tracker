@@ -9,8 +9,6 @@ backend/dist/
 .env.production
 frontend/.env.local
 frontend/.env.production
-amplify_outputs.json
-frontend/src/amplify_outputs.json
 .amplify/
 amplify/.amplify/
 .DS_Store
