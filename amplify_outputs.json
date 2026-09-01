@@ -188,8 +188,8 @@
         "bucket_name": "amplify-d2kw4ti9hsfh0-mai-expensereceiptsbucket16b-qnmufjbtz1nr",
         "aws_region": "us-east-1",
         "paths": {
-          "receipts/*": {
-            "authenticated": [
+          "receipts/${cognito-identity.amazonaws.com:sub}/*": {
+            "entityidentity": [
               "get",
               "list",
               "write",
