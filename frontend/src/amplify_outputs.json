@@ -1,9 +1,9 @@
 {
   "auth": {
-    "user_pool_id": "us-east-1_HZP5BY5zZ",
+    "user_pool_id": "us-east-1_CpBILCfhd",
     "aws_region": "us-east-1",
-    "user_pool_client_id": "3pm0b0na9ogivkgohhs9h5u8e7",
-    "identity_pool_id": "us-east-1:c452d613-d133-419f-af21-2aaa012eef79",
+    "user_pool_client_id": "431r79dlkup0ocmpmkdn03dqid",
+    "identity_pool_id": "us-east-1:d0de3838-9c12-407a-a420-1331aec0bcb1",
     "mfa_methods": [],
     "standard_required_attributes": [
       "email"
@@ -26,7 +26,7 @@
     "unauthenticated_identities_enabled": true
   },
   "data": {
-    "url": "https://clmgdkcnsrbqrpzsw2efbphx6u.appsync-api.us-east-1.amazonaws.com/graphql",
+    "url": "https://dkd27wsefjd3rph4ksgv6uibm4.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_region": "us-east-1",
     "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
     "authorization_types": [
@@ -178,6 +178,27 @@
       },
       "nonModels": {}
     }
+  },
+  "storage": {
+    "aws_region": "us-east-1",
+    "bucket_name": "amplify-d2kw4ti9hsfh0-mai-expensereceiptsbucket16b-qnmufjbtz1nr",
+    "buckets": [
+      {
+        "name": "expenseReceipts",
+        "bucket_name": "amplify-d2kw4ti9hsfh0-mai-expensereceiptsbucket16b-qnmufjbtz1nr",
+        "aws_region": "us-east-1",
+        "paths": {
+          "receipts/${cognito-identity.amazonaws.com:sub}/*": {
+            "entityidentity": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ]
+          }
+        }
+      }
+    ]
   },
   "version": "1.4"
 }

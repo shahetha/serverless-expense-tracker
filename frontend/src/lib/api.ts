@@ -1,3 +1,5 @@
+import { uploadData } from "aws-amplify/storage";
+import { fetchAuthSession } from "aws-amplify/auth";
 import { generateClient } from "aws-amplify/data";
 import type { Expense, ExpenseInput, MonthlySummary } from "../types";
 import { usingDevAuth } from "./auth";
@@ -148,5 +150,19 @@ export async function getMonthlySummary(month: string): Promise<MonthlySummary> 
 
 // ── Receipts ──────────────────────────────────────────────────────────────────
 export async function uploadReceipt(file: File): Promise<string> {
-  return `receipts/${Date.now()}-${file.name}`;
+  const session = await fetchAuthSession();
+  const identityId = session.identityId;
+
+  if (!identityId) {
+    throw new Error("Unable to determine authenticated user identity.");
+  }
+
+  const path = `receipts/${identityId}/${Date.now()}-${file.name}`;
+
+  await uploadData({
+    path,
+    data: file,
+  }).result;
+
+  return path;
 }

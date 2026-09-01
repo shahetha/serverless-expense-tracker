@@ -1,18 +1,27 @@
-import { Amplify } from "aws-amplify";
 import { signIn, signUp, signOut, fetchAuthSession } from "aws-amplify/auth";
+import outputs from "../amplify_outputs.json";
 
 const POOL_ID   = import.meta.env.VITE_COGNITO_USER_POOL_ID  as string | undefined;
 const CLIENT_ID = import.meta.env.VITE_COGNITO_CLIENT_ID     as string | undefined;
-const REGION    = import.meta.env.VITE_COGNITO_REGION || "us-east-1";
 
+const HAS_AMPLIFY_AUTH = Boolean(
+  outputs?.auth?.user_pool_id &&
+  outputs?.auth?.user_pool_client_id
+);
+
+const FORCE_DEV_AUTH = import.meta.env.VITE_USE_DEV_AUTH === "true";
 const DEV_USER_KEY  = "devUserSub";
 const DEV_TOKEN_KEY = "devToken";
 
-export function usingDevAuth(): boolean { return !POOL_ID || !CLIENT_ID; }
+export function usingDevAuth(): boolean {
+  return FORCE_DEV_AUTH || ((!POOL_ID || !CLIENT_ID) && !HAS_AMPLIFY_AUTH);
+}
 
-export function configureAuth(): void {
-  if (usingDevAuth()) { console.info("[auth] DEV mode — no Cognito env vars"); return; }
-  Amplify.configure({ Auth: { Cognito: { userPoolId: POOL_ID!, userPoolClientId: CLIENT_ID! } } });
+ export function configureAuth(): void {
+  if (usingDevAuth()) {
+    console.info("[auth] DEV mode");
+    return;
+  }
 }
 
 export function getDevUserSub(): string | null { return localStorage.getItem(DEV_USER_KEY); }
