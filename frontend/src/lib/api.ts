@@ -1,3 +1,4 @@
+import { uploadData } from "aws-amplify/storage";
 import { generateClient } from "aws-amplify/data";
 import type { Expense, ExpenseInput, MonthlySummary } from "../types";
 import { usingDevAuth } from "./auth";
@@ -148,5 +149,11 @@ export async function getMonthlySummary(month: string): Promise<MonthlySummary> 
 
 // ── Receipts ──────────────────────────────────────────────────────────────────
 export async function uploadReceipt(file: File): Promise<string> {
-  return `receipts/${Date.now()}-${file.name}`;
+  const key = `receipts/${Date.now()}-${file.name}`;
+  await uploadData({
+    path: key,
+    data: file,
+  }).result;
+
+  return key;
 }
